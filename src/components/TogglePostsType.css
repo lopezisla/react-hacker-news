@@ -1,0 +1,33 @@
+.Toggle {
+    margin: 0 0;
+    box-sizing: border-box;
+    font-size: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: stretch;
+  }
+  
+  .Toggle input {
+    width: 98px;
+    height: 31px;
+    position: absolute;
+    left: -9999px;
+  }
+  
+  .Toggle input + label {
+    width: 65px;
+    height: 28px;
+    padding: 3px 16px 0 17px;
+    border-radius: 2px;
+    border: solid 1px #d6d6d6;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.75;
+    letter-spacing: normal;
+    text-align: center;
+    color: #606060;
+  }
