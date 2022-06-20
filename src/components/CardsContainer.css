@@ -1,7 +1,12 @@
 .Container-Card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .Container-Card {
+    justify-content: flex-start;
   }
-  
+}
