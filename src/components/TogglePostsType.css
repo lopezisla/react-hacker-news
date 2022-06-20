@@ -31,3 +31,7 @@
     text-align: center;
     color: #606060;
   }
+
+  .Toggle input:hover + label {
+    color: #40a9ff;
+  }
