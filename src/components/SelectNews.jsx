@@ -13,7 +13,23 @@ const SelectNews = () => {
   const { languageSelect, setLanguageSelect, postsType } = useHackerNews();
   return (
     <div className="Select-Div">
-     
+      {postsType === "all" && (
+        <select
+          name="languagesNews"
+          className="Select-News"
+          onChange={(e) => setLanguageSelect(e.target.value)}
+          value={languageSelect}
+        >
+          <option key="hidden" hidden>
+            Select your news
+          </option>
+          {languages.map((language) => (
+              <option key={language.value} value={language.value}>
+                {language.label}
+              </option>
+            ))}
+        </select>
+      )}
     </div>
   );
 };

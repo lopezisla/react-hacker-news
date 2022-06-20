@@ -20,6 +20,11 @@ const HackerNewsProvider = ({ children }) => {
 
   const checkPostsType = localStorage.getItem("postsType") || "all";
   const [postsType, setPostsType] = useState(checkPostsType);
+  const [languageSelect, setLanguageSelect] = useState();
+
+  const [newsForPaginate, setNewsForPaginate] = useState(
+    checkPostsType === "all" ? news : faves
+  );
 
   useEffect(() => {
     if (postsType === "all") {
@@ -34,12 +39,34 @@ const HackerNewsProvider = ({ children }) => {
       queryAPI();
     } 
   }, [postsType]);
+
+  const handleChangePostsType = (e) => {
+    setPostsType(e.target.value);
+    localStorage.setItem("postsType", e.target.value);
+  };
+
+  useEffect(() => {
+    if (!!languageSelect) {
+      const queryAPI = async () => {
+        const url = `https://hn.algolia.com/api/v1/search_by_date?query=${languageSelect}&hitsPerPage=110`;
+        const { data } = await axios(url).catch((err) => {
+          console.error(err);
+        });
+        const filteredNews = filterNews(data.hits);
+        setNews(filteredNews);
+      };
+      queryAPI();
+    }
+  }, [languageSelect]);
   
   const values = {
     news,
     postsType,
     handleChangePostsType,
-    faves
+    languageSelect,
+    setLanguageSelect,
+    faves,
+    setFaves
   };
 
   return (
