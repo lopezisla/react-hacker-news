@@ -37,6 +37,8 @@ const HackerNewsProvider = ({ children }) => {
   
   const values = {
     news,
+    postsType,
+    handleChangePostsType,
     faves
   };
 
