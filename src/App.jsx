@@ -3,6 +3,7 @@ import { HackerNewsProvider } from "./context/HackerNewsProvider";
 import Header from "./components/Header";
 import TogglePostsType from "./components/TogglePostsType";
 import CardsContainer from "./components/CardsContainer";
+import SelectNews from "./components/SelectNews";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div className="App">
         <Header></Header>
         <TogglePostsType></TogglePostsType>
+        <SelectNews></SelectNews>
         <CardsContainer></CardsContainer>
       </div>
     </HackerNewsProvider>
