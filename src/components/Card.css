@@ -1,0 +1,17 @@
+.Card {
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    height: 90px;
+    padding: 0 0 0 26px;
+    opacity: 0.8;
+    border-radius: 6px;
+    border: solid 1px #979797;
+    background-color: #fff;
+    cursor: pointer;
+    margin: 38px 40px 0px 40px;
+  }
+  
+  .Card:hover {
+    opacity: 0.3;
+  }
