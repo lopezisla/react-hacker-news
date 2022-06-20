@@ -5,9 +5,13 @@ const HackerNewsContext = createContext();
 
 const HackerNewsProvider = ({ children }) => {
   const [news, setNews] = useState([]);
+  const [faves, setFaves] = useState(
+    JSON.parse(localStorage.getItem("faves") ?? "[]")
+  );
   
   const values = {
-    news
+    news,
+    faves
   };
 
   return (
