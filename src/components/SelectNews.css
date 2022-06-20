@@ -24,3 +24,26 @@
     letter-spacing: normal;
     color: #343434;
   }
+  
+  @media (max-width: 768px) {
+    .Select-Div {
+      justify-content: center;
+    }
+  
+    .Select-News {
+      width: 200px;
+      margin: 63px 114px 1px 110px;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .Select-Div {
+      justify-content: flex-start;
+    }
+  
+    .Select-News {
+      width: 240px;
+      margin: 63px 114px 1px 150px;
+    }
+  }
+  
