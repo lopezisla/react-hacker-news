@@ -8,6 +8,7 @@
     align-items: stretch;
   }
   
+  
   .Toggle input {
     width: 98px;
     height: 31px;
@@ -30,8 +31,30 @@
     letter-spacing: normal;
     text-align: center;
     color: #606060;
+    /* transition: border-color 0.15s ease-out, color 0.25s ease-out,
+      background-color 0.15s ease-out, box-shadow 0.15s ease-out; */
   }
-
+  
+  .Toggle input + label:first-of-type {
+    border-radius: 2px 0 0 2px;
+    border-right: none;
+  }
+  
+  .Toggle input + label:last-of-type {
+    border-radius: 0 2px 2px 0;
+    border-left: none;
+  }
+  
   .Toggle input:hover + label {
     color: #40a9ff;
   }
+  
+  .Toggle input:checked + label {
+    border-color: #40a9ff;
+    color: #40a9ff;
+    background: #fff;
+    border-color: #1890ff;
+    box-shadow: 0 0 10px rgba(102, 179, 251, 0.5);
+    z-index: 1;
+  }
+  
