@@ -2,7 +2,15 @@ import { useState, useEffect, createContext } from "react";
 import axios from "axios";
 
 const HackerNewsContext = createContext();
-
+const fieldsToCheck = ["author", "story_title", "story_url", "created_at"];
+const filterNews = (hits) =>
+  hits.filter(
+    (hit) =>
+      hit &&
+      fieldsToCheck
+        .map((field) => hit[field] !== null && hit[field] !== "")
+        .every((value) => value)
+  );
 
 const HackerNewsProvider = ({ children }) => {
   const [news, setNews] = useState([]);
