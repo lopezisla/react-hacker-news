@@ -35,9 +35,12 @@ const HackerNewsProvider = ({ children }) => {
         });
         const filteredNews = filterNews(data.hits);
         setNews(filteredNews);
+        setNewsForPaginate(filteredNews);
       };
       queryAPI();
-    } 
+    } else {
+      setNewsForPaginate(faves);
+    }
   }, [postsType]);
 
   const handleChangePostsType = (e) => {
@@ -54,11 +57,53 @@ const HackerNewsProvider = ({ children }) => {
         });
         const filteredNews = filterNews(data.hits);
         setNews(filteredNews);
+        setNewsForPaginate(filteredNews);
       };
       queryAPI();
     }
   }, [languageSelect]);
-  
+
+  const newsForPaginateLimit = 10;
+  const [pages, setPages] = useState(
+    Math.ceil(newsForPaginate.length / newsForPaginateLimit)
+  );
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    setPages(Math.ceil(newsForPaginate.length / newsForPaginateLimit));
+    setCurrentPage(1);
+  }, [newsForPaginate]);
+
+  useEffect(() => {
+    window.scrollTo({ behavior: "smooth", top: "0px" });
+  }, [currentPage]);
+
+  function goToNextPage() {
+    setCurrentPage((page) => page + 1);
+  }
+
+  function goToPreviousPage() {
+    setCurrentPage((page) => page - 1);
+  }
+
+  function changePage(event) {
+    const pageNumber = Number(event.target.textContent);
+    setCurrentPage(pageNumber);
+  }
+
+  const getPaginatedData = () => {
+    const startIndex =
+      currentPage * newsForPaginateLimit - newsForPaginateLimit;
+    const endIndex = startIndex + newsForPaginateLimit;
+    return newsForPaginate.slice(startIndex, endIndex);
+  };
+
+  const getPaginationGroup = () => {
+    let start = Math.floor((currentPage - 1) / pages) * pages;
+    const arrayPages = new Array(pages).fill().map((_, idx) => start + idx + 1);
+    return arrayPages
+  };
+
   const values = {
     news,
     postsType,
@@ -66,7 +111,15 @@ const HackerNewsProvider = ({ children }) => {
     languageSelect,
     setLanguageSelect,
     faves,
-    setFaves
+    setFaves,
+    newsForPaginate,
+    pages,
+    currentPage,
+    goToNextPage,
+    goToPreviousPage,
+    changePage,
+    getPaginatedData,
+    getPaginationGroup,
   };
 
   return (
